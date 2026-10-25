@@ -1,0 +1,17 @@
+# Managed by SaltStack - do not edit by hand
+[Unit]
+Description={{ name }}
+After=network.target
+
+[Service]
+User={{ user }}
+EnvironmentFile=/etc/{{ name }}/app.conf
+WorkingDirectory={{ home }}/current
+ExecStart={{ home }}/current/bin/{{ name }}
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
